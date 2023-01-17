@@ -1,27 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
-    
-    <div>
-        <div class="div">
-            <h2>
-                Her er et tilfeldig tall: {{randnumb}}
-            </h2>
-        </div>
-        {% block content %}
+{% extends "base.html" %}
 
-        {% endblock %}
-    </div>
-    
-    <script 
-        type="text/javascript" 
-        src="{{ url_for('static', filename='index.js')}}"
-        ></script>
-</body>
-</html>
+{% block title %}
+    Finn money maker
+{% endblock %}
+
+{% block content %}
+    <p>{{flash_message}}</p>
+
+<div class="grid grid-cols-5 gap-4 h-full mt-48">
+ 
+        <form class="col-start-3 col-span-1 grid gap-4" action="{{url_for('views.result')}}" method="POST">
+            <input name="finnkode" type="text" placeholder="Finnkode" class="text-center px-4 py-2 border outline-none text-lg rounded-lg w-56 mx-auto">
+            <input name="ek" type="text" placeholder="Egenkapital" class="text-center px-4 py-2 border outline-none text-lg rounded-lg w-56 mx-auto">
+            <input name="rente" type="text" placeholder="Lånerente" class="text-center px-4 py-2 border outline-none text-lg rounded-lg w-56 mx-auto">
+            <input type="submit" class="border rounded-lg px-4 py-2 bg-slate-100 w-56 mx-auto" value="Kalkuler profitt">
+        </form>
+
+</div>
+{% endblock %}
